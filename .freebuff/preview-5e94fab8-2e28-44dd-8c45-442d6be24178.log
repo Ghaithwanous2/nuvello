@@ -1,0 +1,19 @@
+   ▲ Next.js 15.5.25
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.2:3000
+
+ ✓ Starting...
+ ✓ Ready in 7.9s
+ ○ Compiling / ...
+ ✓ Compiled / in 1576ms (653 modules)
+ GET / 200 in 2192ms
+ GET / 200 in 168ms
+ GET / 200 in 178ms
+ ○ Compiling /api/auth/me ...
+ ✓ Compiled /api/auth/me in 622ms (673 modules)
+ GET /api/auth/me 200 in 860ms
+ ✓ Compiled /account in 425ms (724 modules)
+ GET /account 307 in 1024ms
+ ✓ Compiled /login in 369ms (738 modules)
+ GET /login 200 in 882ms
+[?25h

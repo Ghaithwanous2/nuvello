@@ -1,0 +1,48 @@
+{
+  "users": [
+    {
+      "id": "ad3e1f16-b645-4a63-a5af-348fb62ce593",
+      "name": "Admin Test",
+      "email": "admin@nuvello.local",
+      "passwordHash": "jGttiv24vI4rC9IKkILoxg:mi42JlX9mNq4KOUjuw_znmO9BG4VSD4DwQSz3g_LR2A",
+      "plan": "free",
+      "role": "admin",
+      "createdAt": "2026-09-20T21:07:59.231Z"
+    },
+    {
+      "id": "f5b2a23c-7845-4d41-a42b-2ab23f1764e8",
+      "name": "ghaith",
+      "email": "gaiethwanous@gmail.com",
+      "passwordHash": "7L1q5w3LVEk-1einj72gPg:pLiJ4jxar798PLbrwYgZOjLIn2L14wfsSnlz5-reeuE",
+      "plan": "free",
+      "role": "user",
+      "createdAt": "2026-09-21T06:58:15.275Z",
+      "planSince": null,
+      "planRenewsAt": null,
+      "planSource": "manual"
+    }
+  ],
+  "sessions": [
+    {
+      "token": "Dh74vr_-U0Ce3D3Xy-cUVHmRv_N2MPFVzwyviBOLB4M",
+      "userId": "ad3e1f16-b645-4a63-a5af-348fb62ce593",
+      "createdAt": "2026-09-20T21:07:59.235Z",
+      "expiresAt": "2026-10-20T21:07:59.235Z"
+    },
+    {
+      "token": "8NLQp8wGxaiufunDMWc2VBdg8_ulp1FMpokpIJxpROw",
+      "userId": "f5b2a23c-7845-4d41-a42b-2ab23f1764e8",
+      "createdAt": "2026-09-21T06:58:15.280Z",
+      "expiresAt": "2026-10-21T06:58:15.280Z"
+    },
+    {
+      "token": "lW4gy97nRDlUrJfOcHPHBZXWCgmt-qtFRt8Hp1SiGck",
+      "userId": "f5b2a23c-7845-4d41-a42b-2ab23f1764e8",
+      "createdAt": "2026-09-21T08:19:35.548Z",
+      "expiresAt": "2026-10-21T08:19:35.548Z"
+    }
+  ],
+  "usage": [],
+  "subscriptions": [],
+  "payments": []
+}
