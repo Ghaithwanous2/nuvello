@@ -20,7 +20,7 @@ export async function POST(request) {
   }
 
   // Reserved, not charged: the client releases quota for images that fail.
-  const reserved = reserveUsage(subjectId, requested, dailyLimitForPlan(planId));
+  const reserved = await reserveUsage(subjectId, requested, dailyLimitForPlan(planId));
   const payload = { guest: !user, allowed: reserved.allowed, ...quotaSnapshot(planId, reserved.usage) };
 
   if (reserved.allowed === 0) {

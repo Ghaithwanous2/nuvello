@@ -4,10 +4,10 @@ import { verifyWebhookSignature } from "@/lib/stripe";
 
 export const runtime = "nodejs";
 
-function resolveUserId(subscription) {
+async function resolveUserId(subscription) {
   const fromMetadata = subscription?.metadata?.userId;
   if (fromMetadata) return fromMetadata;
-  return findUserByStripeCustomer(subscription?.customer)?.id || null;
+  return (await findUserByStripeCustomer(subscription?.customer))?.id || null;
 }
 
 async function handleEvent(event) {
@@ -18,7 +18,7 @@ async function handleEvent(event) {
       if (!userId || !session.subscription) return false;
       // Subscription details (period end, real status) arrive with
       // customer.subscription.* — mark it active here so access is immediate.
-      applySubscription({
+      await applySubscription({
         userId,
         stripeCustomerId: session.customer,
         stripeSubscriptionId: session.subscription,
@@ -31,9 +31,9 @@ async function handleEvent(event) {
     case "customer.subscription.updated":
     case "customer.subscription.deleted": {
       const subscription = event.data.object;
-      const userId = resolveUserId(subscription);
+      const userId = await resolveUserId(subscription);
       if (!userId) return false;
-      applySubscription({
+      await applySubscription({
         userId,
         stripeCustomerId: subscription.customer,
         stripeSubscriptionId: subscription.id,

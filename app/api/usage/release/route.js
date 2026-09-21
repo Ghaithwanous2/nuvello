@@ -10,12 +10,12 @@ export async function POST(request) {
   const guestId = user ? null : await getGuestId();
   const subjectId = usageSubjectId(user, guestId);
 
-  const released = subjectId ? releaseUsage(subjectId, body?.count) : 0;
+  const released = subjectId ? await releaseUsage(subjectId, body?.count) : 0;
 
   return NextResponse.json({
     ok: true,
     released,
     guest: !user,
-    ...quotaSnapshot(planId, subjectId ? getUserUsage(subjectId) : 0),
+    ...quotaSnapshot(planId, subjectId ? await getUserUsage(subjectId) : 0),
   });
 }

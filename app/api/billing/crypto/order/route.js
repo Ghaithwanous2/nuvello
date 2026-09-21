@@ -11,7 +11,7 @@ export async function GET(request) {
   }
 
   const orderId = new URL(request.url).searchParams.get("order");
-  const payment = getPaymentByOrderId(orderId);
+  const payment = await getPaymentByOrderId(orderId);
   if (!payment || payment.userId !== user.id) {
     return NextResponse.json({ error: "لم يتم العثور على الطلب." }, { status: 404 });
   }
@@ -23,7 +23,7 @@ export async function GET(request) {
       const info = await fetchPaymentInfo({ orderId: payment.orderId });
       const status = statusOf(info);
       if (status && status !== payment.status) {
-        applyCryptoPayment({
+        await applyCryptoPayment({
           orderId: payment.orderId,
           status,
           providerUuid: info.uuid || null,
@@ -31,7 +31,7 @@ export async function GET(request) {
           payerAmount: info.payment_amount || null,
           isFinal: info.is_final,
         });
-        current = getPaymentByOrderId(orderId) || payment;
+        current = await getPaymentByOrderId(orderId) || payment;
       }
     } catch {
       // Provider unreachable: report the last known state.

@@ -33,13 +33,13 @@ export default async function AccountPage({ searchParams }) {
   if (!user) redirect("/login");
 
   const params = await searchParams;
-  const subscription = getUserSubscription(user.id);
+  const subscription = await getUserSubscription(user.id);
   const activePlan = planIdForUser(user);
   const isPro = activePlan === "pro";
-  const quota = quotaSnapshot(activePlan, getUserUsage(user.id));
+  const quota = quotaSnapshot(activePlan, await getUserUsage(user.id));
   const renewal = formatDate(user.planRenewsAt);
   const prepaidExpired = !isPro && user.plan === "pro" && user.planSource === "crypto" && !user.planLifetime;
-  const payments = getUserPayments(user.id, 5);
+  const payments = await getUserPayments(user.id, 5);
 
   return (
     <main className="account-page">

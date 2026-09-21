@@ -6,16 +6,16 @@ export async function GET() {
   const user = await getCurrentUser();
 
   if (user) {
-    const usage = getUserUsage(user.id);
+    const usage = await getUserUsage(user.id);
     return NextResponse.json({
       user,
       guest: false,
       ...quotaSnapshot(planIdForUser(user), usage),
-      subscription: getUserSubscription(user.id),
+      subscription: await getUserSubscription(user.id),
     });
   }
 
   const guestId = await getGuestId({ create: true });
-  const usage = getUserUsage(usageSubjectId(null, guestId));
+  const usage = await getUserUsage(usageSubjectId(null, guestId));
   return NextResponse.json({ user: null, guest: true, ...quotaSnapshot("guest", usage) });
 }

@@ -15,7 +15,7 @@ export async function POST(request) {
     }, { status: 503 });
   }
 
-  const customerId = getStripeCustomerId(user.id);
+  const customerId = await getStripeCustomerId(user.id);
   if (!customerId) {
     return NextResponse.json({ error: "لا يوجد اشتراك Stripe مرتبط بهذا الحساب." }, { status: 409 });
   }

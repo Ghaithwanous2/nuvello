@@ -23,10 +23,10 @@ export async function POST(request) {
   }
 
   try {
-    let customerId = getStripeCustomerId(user.id);
+    let customerId = await getStripeCustomerId(user.id);
     if (!customerId) {
       const customer = await createCustomer({ email: user.email, name: user.name, userId: user.id });
-      customerId = attachStripeCustomer(user.id, customer.id);
+      customerId = await attachStripeCustomer(user.id, customer.id);
     }
 
     const origin = siteOrigin(request);

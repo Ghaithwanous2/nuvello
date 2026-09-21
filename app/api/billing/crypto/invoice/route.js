@@ -52,7 +52,7 @@ export async function POST(request) {
       urlCallback: `${origin}/api/billing/crypto/webhook`,
     });
 
-    createPaymentRecord({
+    await createPaymentRecord({
       userId: user.id,
       kind: offer.kind,
       days: offer.days,

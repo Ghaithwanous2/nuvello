@@ -33,7 +33,7 @@ export async function POST(request) {
   }
 
   try {
-    const result = applyCryptoPayment({
+    const result = await applyCryptoPayment({
       orderId: payload.order_id,
       status,
       providerUuid: payload.uuid || null,

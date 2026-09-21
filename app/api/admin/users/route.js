@@ -9,10 +9,10 @@ export async function POST(request) {
     const { userId, action, value } = await request.json();
     if (!userId || !action) throw new Error("طلب غير مكتمل.");
 
-    if (action === "plan") setUserPlan(userId, value);
-    else if (action === "role") setUserRole(userId, value);
-    else if (action === "clearSessions") clearUserSessions(userId);
-    else if (action === "resetUsage") resetUserUsage(userId);
+    if (action === "plan") await setUserPlan(userId, value);
+    else if (action === "role") await setUserRole(userId, value);
+    else if (action === "clearSessions") await clearUserSessions(userId);
+    else if (action === "resetUsage") await resetUserUsage(userId);
     else throw new Error("إجراء غير معروف.");
 
     return NextResponse.json({ ok: true });

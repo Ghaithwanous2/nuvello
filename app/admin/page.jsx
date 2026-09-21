@@ -15,8 +15,8 @@ export default async function AdminPage() {
   if (!currentUser) redirect("/login");
   if (currentUser.role !== "admin") redirect("/account");
 
-  const { stats, users } = getAdminOverview();
-  const payments = getRecentPayments(8);
+  const { stats, users } = await getAdminOverview();
+  const payments = await getRecentPayments(8);
 
   return (
     <main className="admin-page">
